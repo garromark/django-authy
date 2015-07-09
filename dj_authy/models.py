@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.db import models
 from django.db import IntegrityError
 from django.contrib.auth.models import User
@@ -31,7 +32,7 @@ class AuthyModelMixin(object):
 
 
 class AuthyProfile(models.Model):
-    user = models.OneToOneField('auth.User')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     authy_id = models.CharField(max_length=64, null=True, db_index=True)
     cellphone = PhoneNumberField(db_index=True, null=True)  # access country from the cellphone object
     is_smartphone = models.BooleanField(default=True)
