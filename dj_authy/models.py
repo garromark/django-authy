@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.db import models
 from django.db import IntegrityError
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from jsonfield import JSONField
 from phonenumber_field.modelfields import PhoneNumberField
@@ -57,4 +57,4 @@ def _get_or_create_authy_profile(user):
 
 
 # used to trigger profile creation by accidental reference. Rather use the _create_authy_profile def above
-User.authy_profile = property(lambda u: _get_or_create_authy_profile(user=u)[0])
+get_user_model().authy_profile = property(lambda u: _get_or_create_authy_profile(user=u)[0])
