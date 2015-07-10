@@ -21,7 +21,7 @@ class AuthyAuthenticationRequiredMiddleware(object):
     )
     """
     def process_request(self, request):
-        if request.user.is_authenticated():
+        if hasattr(request, 'user') and request.user.is_authenticated():
             #
             # only if we dont already have it
             #
