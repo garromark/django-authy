@@ -26,7 +26,7 @@ class AuthyAuthenticationRequiredMiddleware(object):
             # only if we dont already have it
             #
             if request.session.get(AUTHY_SESSION_KEY, None) in [None, False]:
-                profile = request.user.auth_profile
+                profile = request.user.authy_profile
                 profile_data = profile.data
 
                 # if the required key is present in the profile data and is set to True
